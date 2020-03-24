@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, StyleSheet, Button } from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 import { Camera } from 'expo-camera';
 import CrossHair from './CrossHair';
 import CustomButton from './Button';
@@ -25,8 +25,8 @@ export class CameraComp extends React.Component {
   snap = async () => {
     if (this.camera) {
       try {
-        let photo = await this.camera.takePictureAsync({ quality: 0.5 })
-        this.props.setPhotoUri(photo);
+        const photo = await this.camera.takePictureAsync({ quality: 0.5 });
+        this.props.setPhotoUri(photo.uri);
         this.props.navigation.navigate('Home', { 
           params: { selectedPhoto: photo},
           screen: 'Upload'
@@ -75,16 +75,13 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = (state) => {
-  return {
+const mapStateToProps = (state) => ({
     permissions: state.permissions,
-    photoUri: state.photo
-  }
-}
+});
 
 const mapDispatchToProps = (dispatch) => ({
   setCameraAccess: (boolean) => dispatch(setCameraAccess(boolean)),
-  setPhotoUri: (uri) => dispatch(setPhotoUri(uri))
-})
+  setPhotoUri: (photo) => dispatch(setPhotoUri(photo))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(CameraComp);

@@ -34,7 +34,7 @@ export default function upload({ route, navigation }) {
         <Image 
           source={{ uri: selectedPhoto.uri }}
           style={styles.preview}
-          resizeMode='cover'
+          resizeMode='contain'
         />
       </View>
       <ActivityIndicator />
@@ -53,7 +53,9 @@ const styles = StyleSheet.create({
     fontSize: 28,
     textAlign: 'center',
     marginBottom: 30,
-    marginTop: 100
+    marginTop: 100,
+    color: Colors.darkGray,
+    fontWeight: '800',
   },
   previewContainer: {
     width: 350,
