@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import Camera from './src/components/Camera';
 import HomeScreen from './src/screens/HomeScreen';
-import { NavigationContainer, CommonActions } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import Colors from './src/constants/Colors';
 import Upload from './src/screens/upload';
 import isItHealthy from './src/screens/isItHealthy';
@@ -19,10 +19,12 @@ const Stack = createStackNavigator();
 const store = configureStore();
 
 function HomeStack({ route, navigation }) {
-  if (route.name === 'Upload') {
-    navigation.setOptions({ tabBarVisible: false })
-  } else {
-    navigation.setOptions({ tabBarVisible: true })
+  if (route.state) {
+    if (route.state.index === 1) {
+      navigation.setOptions({ tabBarVisible: false })
+    } else {
+      navigation.setOptions({ tabBarVisible: true })
+    }
   }
   return (
     <Stack.Navigator initialRouteName="Home" headerMode="none">
@@ -86,23 +88,3 @@ export default function App() {
       </Provider>
   );
 };
-
-/*
-
-options={({ navigation }) => ({
-            headerLeft: () => (
-              <Button
-                title='Home Screen'
-                onPress={() => (navigation.dispatch(
-                  CommonActions.reset({
-                    index: 1,
-                    routes: [
-                      { name: 'HomeScreen' },
-                    ],
-                  })
-                ))}
-              />
-            )
-          })}
-
-*/

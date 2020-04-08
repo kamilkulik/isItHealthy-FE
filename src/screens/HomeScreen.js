@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Button } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Colors from '../constants/Colors';
 import ImagePicker from '../components/ImagePicker';
 import CustomButton from '../components/Button';
@@ -13,7 +13,7 @@ function HomeScreen({ navigation }) {
         <View style={{ flexDirection: 'row', marginTop: 50 }}>
           <Text style={styles.homeTitleOne}>isIt</Text><Text style={styles.homeTitleTwo}>Healthy</Text>
         </View>
-        <Text style={styles.description}>Snap food or select photo from your device and find out if it's healhy or not. Under the hood, our app uses Machine Learning to process your image.</Text>
+        <Text style={styles.description}>Snap food or select photo from your device and find out if it's healthy or not. Under the hood, our app uses Machine Learning to process your image.</Text>
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity

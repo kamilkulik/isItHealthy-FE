@@ -22,7 +22,7 @@ export function isItHealthy({ route, navigation, photo }) {
       const labelArray = Object.entries(description);
       let probs = [], labels = [];
       for (let i = 0; i < 5 && i < probArray.length; i++) {
-        probs.push(Math.round(probArray[i][1])*100)
+        probs.push(Math.round(probArray[i][1]*100))
         labels.push(labelArray[i][1])
       }
       //probArray.map(item => (Number.parseFloat(item[1]).toPrecision(2)*100));
@@ -34,7 +34,7 @@ export function isItHealthy({ route, navigation, photo }) {
 
   let data = [];
   if (apiLabels) {
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < 5 && i < apiProbs.length; i++) {
         data.push({ key: apiLabels[i], value: apiProbs[i] })
       }
   }

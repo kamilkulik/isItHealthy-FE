@@ -13,6 +13,9 @@ export class CameraComp extends React.Component {
 
   componentDidMount() {
     const checkPermissions = async () => {
+      const { status } = await Camera.getPermissionsAsync();
+      this.props.setCameraAccess(status);
+      
       if (this.props.permissions.cameraAccess === 'undetermined' || this.props.permissions.cameraAccess === 'denied') {
         const { status } = await Camera.requestPermissionsAsync();
         this.props.setCameraAccess(status)
